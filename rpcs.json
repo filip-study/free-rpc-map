@@ -1,0 +1,65 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-09-19T13:42:00+02:00",
+  "notes": "Only endpoints that answered eth_chainId without an API key at publish time. Public RPCs are rate-limited; rotate and fail over.",
+  "chains": {
+    "base": {
+      "chainId": 8453,
+      "hex": "0x2105",
+      "explorer": "https://basescan.org",
+      "http": [
+        "https://mainnet.base.org",
+        "https://base-rpc.publicnode.com",
+        "https://base.drpc.org",
+        "https://1rpc.io/base",
+        "https://base.meowrpc.com",
+        "https://base.gateway.tenderly.co"
+      ]
+    },
+    "base-sepolia": {
+      "chainId": 84532,
+      "hex": "0x14a34",
+      "explorer": "https://sepolia.basescan.org",
+      "http": [
+        "https://sepolia.base.org",
+        "https://base-sepolia-rpc.publicnode.com"
+      ]
+    },
+    "ethereum": {
+      "chainId": 1,
+      "hex": "0x1",
+      "explorer": "https://etherscan.io",
+      "http": [
+        "https://ethereum-rpc.publicnode.com",
+        "https://ethereum.publicnode.com",
+        "https://cloudflare-eth.com",
+        "https://1rpc.io/eth",
+        "https://eth.drpc.org",
+        "https://eth.meowrpc.com",
+        "https://rpc.flashbots.net",
+        "https://virginia.rpc.blxrbdn.com",
+        "https://uk.rpc.blxrbdn.com",
+        "https://singapore.rpc.blxrbdn.com"
+      ]
+    },
+    "ethereum-sepolia": {
+      "chainId": 11155111,
+      "hex": "0xaa36a7",
+      "explorer": "https://sepolia.etherscan.io",
+      "http": [
+        "https://ethereum-sepolia-rpc.publicnode.com"
+      ]
+    }
+  },
+  "skip_needs_key": [
+    "https://rpc.ankr.com/base",
+    "https://rpc.ankr.com/eth",
+    "https://mainnet.infura.io/v3/"
+  ],
+  "skip_down_at_publish": [
+    "https://base.llamarpc.com",
+    "https://eth.llamarpc.com",
+    "https://base.blockpi.network/v1/rpc/public",
+    "https://endpoints.omniatech.io/v1/base/mainnet/public"
+  ]
+}
