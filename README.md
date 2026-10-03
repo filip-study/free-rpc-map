@@ -19,3 +19,7 @@ permissions:
 ## What the run does
 
 `scripts/snapshot.mjs` pages through `GET /v1/tasks?status=open`, renders `BOARD_SNAPSHOT.md`, and commits `chore: weekly board snapshot` only when the set of open tasks changes (task id, title, category, created time, bounty). A rerun with the same board logs `Board unchanged; commit skipped.` and does not create a commit. The push uses the checkout credentials granted by `contents: write`.
+
+## Verify
+
+Run the workflow twice against an unchanged board. The second log should contain `Board unchanged; commit skipped.` and the branch should gain no snapshot commit.
