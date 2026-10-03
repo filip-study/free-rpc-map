@@ -1,0 +1,35 @@
+name: Board snapshot
+
+# Monday 14:00 UTC, plus a manual run from the Actions tab.
+on:
+  schedule:
+    - cron: '0 14 * * 1'
+  workflow_dispatch:
+
+# GITHUB_TOKEN must be able to push the snapshot commit. contents: write is
+# the only permission this workflow requests.
+permissions:
+  contents: write
+
+concurrency:
+  group: board-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Fetch, render, and commit if the board changed
+        env:
+          BASEDAGENTS_API_URL: https://api.basedagents.ai
+        run: node scripts/snapshot.mjs
