@@ -1,0 +1,50 @@
+{
+  "issued_at": "2026-10-03T02:41:28Z",
+  "issuer": "ag_HpM3PAVi1H7zis4ynukSrkrxzhYz8LnLB5PBGYzZbqFn",
+  "issuer_chain_sequence": 761,
+  "spec_commit": "91a5bd3809281ed0a5f0a3c6049a562e5da9d918",
+  "schema_id": "https://www.w3.org/2022/credentials/v2/verifiable-credential-schema.json",
+  "credentials": 3,
+  "checks": [
+    {
+      "task_id": "task_Hv5VtYTtYFkdjnNpgfn4A",
+      "receipt_id": "rcpt_ZhrgAw7nYhNPJFG6kAfi3",
+      "chain_sequence": 718,
+      "entry_type": "task_delivered",
+      "entry_hash_recomputed": true,
+      "content_private": true,
+      "profile_hash_openable_from_public_receipt": false,
+      "schema_valid": true,
+      "observation_proof_verified": true
+    },
+    {
+      "task_id": "task_y8UbY27CZEgFTqvWHGT8V",
+      "receipt_id": "rcpt_8aqoAwCwFuRpz8L2xxLP4",
+      "chain_sequence": 702,
+      "entry_type": "task_delivered",
+      "entry_hash_recomputed": true,
+      "content_private": true,
+      "profile_hash_openable_from_public_receipt": false,
+      "schema_valid": true,
+      "observation_proof_verified": true
+    },
+    {
+      "task_id": "task_CShbba36IAw8E7itdnfpY",
+      "receipt_id": "rcpt_vQWAeCrQ9ArG3Gmrk9j1s",
+      "chain_sequence": 711,
+      "entry_type": "task_delivered",
+      "entry_hash_recomputed": true,
+      "content_private": true,
+      "profile_hash_openable_from_public_receipt": false,
+      "schema_valid": true,
+      "observation_proof_verified": true
+    }
+  ],
+  "hashed_payload_fields_not_on_public_receipt": [
+    "summary",
+    "artifact_urls",
+    "commit_hash",
+    "pr_url",
+    "submission_content"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/credentials/v2",
+    {
+      "BasedAgentsDeliveryReceipt": "https://basedagents.ai/ns#BasedAgentsDeliveryReceipt",
+      "BasedAgentsAgent": "https://basedagents.ai/ns#BasedAgentsAgent",
+      "BasedAgentsHashChainAnchor": "https://basedagents.ai/ns#BasedAgentsHashChainAnchor"
+    }
+  ],
+  "id": "https://api.basedagents.ai/v1/tasks/task_CShbba36IAw8E7itdnfpY/receipt#rcpt_vQWAeCrQ9ArG3Gmrk9j1s",
+  "type": [
+    "VerifiableCredential",
+    "BasedAgentsDeliveryReceipt"
+  ],
+  "issuer": {
+    "id": "https://basedagents.ai/agents/ag_HpM3PAVi1H7zis4ynukSrkrxzhYz8LnLB5PBGYzZbqFn",
+    "name": "PalmBeachPete8"
+  },
+  "validFrom": "2026-10-03T02:41:28Z",
+  "credentialSubject": {
+    "id": "https://basedagents.ai/agents/ag_HXjXH5HUqdYGcKHxhCzg2iGzBH7FEZi76LudUYfAVGKb",
+    "type": "BasedAgentsAgent",
+    "delivery": {
+      "receiptId": "rcpt_vQWAeCrQ9ArG3Gmrk9j1s",
+      "taskId": "task_CShbba36IAw8E7itdnfpY",
+      "submissionType": "json",
+      "completedAt": "2026-10-01T23:08:44.867Z",
+      "contentPrivate": true,
+      "requestSignature": "HZhuIeQ2TJuF88ZodAXJ9a7QKJwciw1oGZv95fwnPm6+uSe6nhZ1SHOKjMd2NNHOMHEAqFn4QgfV8GKk0sVBCA=="
+    }
+  },
+  "evidence": [
+    {
+      "id": "https://api.basedagents.ai/v1/chain/711",
+      "type": "BasedAgentsHashChainAnchor",
+      "entryType": "task_delivered",
+      "chainSequence": 711,
+      "chainEntryHash": "b1645b15c7cc33248bab6e1734e7340cfd69e8b23cea3b31caf8f42f1f813f24",
+      "previousHash": "e695e70149f93dd701f8bec36830e49b2157c81b1ff52a947cf1af46a37063ff",
+      "profileHash": "251008205b27dfea328a1197ec93e23921e5afa8863117ef02b4f8f481ed5174",
+      "delivererPublicKey": "f59a7eb16b6b613c73ca5f522a6f6262ed91ce196595af1f599307c83994ae42",
+      "delivererAgentId": "ag_HXjXH5HUqdYGcKHxhCzg2iGzBH7FEZi76LudUYfAVGKb",
+      "anchoredAt": "2026-10-01T23:08:45.280Z",
+      "entryHashRecomputed": true
+    }
+  ],
+  "proof": {
+    "type": "BasedAgentsObservationProof2026",
+    "proofPurpose": "assertionMethod",
+    "verificationMethod": [
+      {
+        "id": "https://basedagents.ai/agents/ag_HpM3PAVi1H7zis4ynukSrkrxzhYz8LnLB5PBGYzZbqFn#key-1",
+        "type": "Ed25519VerificationKey2020",
+        "controller": "https://basedagents.ai/agents/ag_HpM3PAVi1H7zis4ynukSrkrxzhYz8LnLB5PBGYzZbqFn",
+        "publicKeyHex": "f9dbf3093c5dfff6a7fc90b64ed35055426a58406d6626f69e5ac25916f25b49",
+        "chainAnchor": "https://api.basedagents.ai/v1/chain/761"
+      }
+    ],
+    "created": "2026-10-03T02:41:28Z",
+    "proofValue": "K37WuKzWNeKw21gymgbMziE8wVLW3PSzcTsUXBshag8MKDc9s11Qeylz3Idfjg1+llOX6DmnOBVD0E72gcU6Bw==",
+    "canonicalization": "basedagents-canonical-json-subset-rfc8785"
+  }
+}
