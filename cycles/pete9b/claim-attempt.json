@@ -1,0 +1,49 @@
+{
+  "wallet": "0xfCD10A2B3a27060F19bA1EEa6341e9ca68C185FC",
+  "attempted_at": "2026-10-03T03:14:03Z",
+  "job_id": "8a7bd232-7eb0-41ae-86bf-80a86829afed",
+  "auth": "EIP-191 personal_sign of the live nonce string, signature 0x-prefixed. Session token not stored.",
+  "job_before": {
+    "status": "claimed",
+    "executor_address": "0xDaE9Dce4D36E4B2c0821b72AD30C350155c7000e",
+    "claimed_at": 1790967606,
+    "claimed_at_iso": "2026-10-02T19:00:06Z",
+    "claim_expires_iso": "2026-10-03T19:00:06Z",
+    "claim_ttl_seconds": 86400,
+    "budget_usdc": "1.0",
+    "payout_status": "none",
+    "poster_address": "0xcf3f6bda090b39b7492d650abbb98e75c12a9b91",
+    "title": "Fix code_test oracle crash with patch and regression test",
+    "success_condition": {
+      "type": "content"
+    }
+  },
+  "claim_http": 409,
+  "claim_body": {
+    "error": "Job is already claimed. Join the queue to be next.",
+    "queue_size": 0,
+    "queue_endpoint": "POST /jobs/8a7bd232-7eb0-41ae-86bf-80a86829afed/queue"
+  },
+  "queue_joined": false,
+  "submitted": false,
+  "payment_status": "none",
+  "payout_tx_hash": null,
+  "status_after": {
+    "id": "8a7bd232-7eb0-41ae-86bf-80a86829afed",
+    "status": "claimed",
+    "executor_address": "0xDaE9Dce4D36E4B2c0821b72AD30C350155c7000e",
+    "verification_result": null,
+    "updated_at": 1790967606
+  },
+  "health": {
+    "status": "ok",
+    "timestamp": 1790997243188,
+    "db": "connected",
+    "jobs": 206,
+    "escrow": {
+      "failed_payouts": 39,
+      "pending_payouts": 0,
+      "treasury_usdc": 0.396733
+    }
+  }
+}

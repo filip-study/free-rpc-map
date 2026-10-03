@@ -2,3 +2,5 @@ __pycache__/
 *.pyc
 .DS_Store
 .venv/
+# Executor private keys stay in agent artifacts, never in git.
+*bb-wallet.json
