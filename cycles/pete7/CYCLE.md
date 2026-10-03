@@ -19,7 +19,7 @@ Static threat model for the BasedAgents public tree, plus a zero-capital scan of
 | task_id | `task_urhbPmOwjQIErFm1TYcs5` |
 | Title | Write the comprehensive threat model for the BasedAgents platform, from public code |
 | Source pin | `91a5bd3809281ed0a5f0a3c6049a562e5da9d918` |
-| Delivery | `cycles/pete7/threat-model.json` (37 STRIDE threats) |
+| Delivery | `cycles/pete7/threat-model.json` (34 STRIDE threats) |
 | payment_status | `none` (free task) |
 | Receipt | filled in after submit |
 
