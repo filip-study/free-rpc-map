@@ -1,0 +1,547 @@
+{
+  "as_of": "2026-10-03",
+  "dimensions": [
+    {
+      "name": "payment_timing",
+      "values": [
+        "prefund_escrow",
+        "at_acceptance",
+        "per_call",
+        "subscription",
+        "emissions",
+        "unenforced_p2p",
+        "unknown"
+      ],
+      "why_it_matters": "Timing is when value is committed relative to the work. A timer or a rival worker can be paid only if funds were locked earlier. A per-call rail does not need a task deadline. An unenforced peer payment can be refused after delivery. These are different contracts, not different brands of the same escrow."
+    },
+    {
+      "name": "custody",
+      "values": [
+        "platform_balance",
+        "smart_contract",
+        "payer_authorization",
+        "protocol_emissions",
+        "none",
+        "hybrid",
+        "unknown"
+      ],
+      "why_it_matters": "Custody is who can move the funds between commitment and receipt. A house wallet, a contract, a signed authorization the facilitator submits, and a minted emission are different failure modes. None means the platform never holds or authorizes the balance."
+    },
+    {
+      "name": "review_model",
+      "values": [
+        "buyer",
+        "auto_timer",
+        "judged",
+        "oracle_or_metric",
+        "hybrid",
+        "none",
+        "unknown"
+      ],
+      "why_it_matters": "Review is who decides that a unit of work counted. The buyer is cheap and conflicted when they are also the subject of the work. A timer needs funds already locked. Judges and metrics exist where the buyer cannot be the sole scorer."
+    },
+    {
+      "name": "identity",
+      "values": [
+        "keypair",
+        "platform_account",
+        "onchain_wallet",
+        "tokenized_agent",
+        "hybrid",
+        "none",
+        "unknown"
+      ],
+      "why_it_matters": "Identity is the credential that may claim, deliver, or get paid. A keypair can sign without an email. A wallet can hold funds but is not by itself a reputation subject. A tokenized agent makes the firm the payee. A platform account can demand KYC the key cannot."
+    },
+    {
+      "name": "reputation",
+      "values": [
+        "none",
+        "completion_history",
+        "ratings",
+        "stake_weighted",
+        "social_graph",
+        "hybrid",
+        "unknown"
+      ],
+      "why_it_matters": "Reputation is the signal that survives a single job. Completion counts, star ratings, stake-weighted scores, and a social graph punish different attacks. None means a new key is as trusted as an old one, so bonds or hardware have to do that work instead."
+    },
+    {
+      "name": "capital_requirement",
+      "values": [
+        "none",
+        "gas_only",
+        "refundable_bond",
+        "stake",
+        "registration_fee",
+        "hardware",
+        "hybrid",
+        "unknown"
+      ],
+      "why_it_matters": "Capital is what the worker must post before earning, not what the buyer pays. Gas, a refundable bond, a burned or locked stake, a directory fee, and a GPU are different barriers. None means a fresh account can take work."
+    },
+    {
+      "name": "fee_model",
+      "values": [
+        "none",
+        "take_rate",
+        "protocol_fee",
+        "emissions_dilution",
+        "subscription",
+        "hybrid",
+        "unknown"
+      ],
+      "why_it_matters": "The fee is how the platform is paid. A cut of the bounty, a flat protocol fee, dilution of an emission, and a subscription land on different parties. None means the stated public docs describe no platform cut. Unknown means those docs do not say."
+    },
+    {
+      "name": "work_type",
+      "values": [
+        "posted_tasks",
+        "offered_services",
+        "competitions",
+        "mining",
+        "per_call_api",
+        "hybrid",
+        "unknown"
+      ],
+      "why_it_matters": "Work type is the shape of the listing: a posted job, a service the worker offers, a contest, continuous mining, or a metered API. Payment timing does not determine this. A posted task can be escrowed or paid at accept. A contest can use either."
+    }
+  ],
+  "platforms": [
+    {
+      "name": "BasedAgents",
+      "cell_values": {
+        "payment_timing": "prefund_escrow",
+        "custody": "platform_balance",
+        "review_model": "hybrid",
+        "identity": "keypair",
+        "reputation": "hybrid",
+        "capital_requirement": "refundable_bond",
+        "fee_model": "none",
+        "work_type": "posted_tasks"
+      },
+      "sources": [
+        "https://basedagents.ai/skill.md",
+        "https://raw.githubusercontent.com/maxfain/basedagents/main/SPEC.md"
+      ]
+    },
+    {
+      "name": "ArcBounty",
+      "cell_values": {
+        "payment_timing": "prefund_escrow",
+        "custody": "smart_contract",
+        "review_model": "hybrid",
+        "identity": "hybrid",
+        "reputation": "hybrid",
+        "capital_requirement": "gas_only",
+        "fee_model": "take_rate",
+        "work_type": "posted_tasks"
+      },
+      "sources": [
+        "https://github.com/Sofiia7/ARC/blob/main/agent-sdk/README.md",
+        "https://github.com/Sofiia7/ARC/blob/main/ARCHITECTURE.md"
+      ]
+    },
+    {
+      "name": "Olas Mech Marketplace",
+      "cell_values": {
+        "payment_timing": "per_call",
+        "custody": "smart_contract",
+        "review_model": "hybrid",
+        "identity": "onchain_wallet",
+        "reputation": "completion_history",
+        "capital_requirement": "gas_only",
+        "fee_model": "take_rate",
+        "work_type": "offered_services"
+      },
+      "sources": [
+        "https://stack.olas.network/mech-server/",
+        "https://stack.olas.network/mech-client/",
+        "https://olas.network/agent-economies/mech"
+      ]
+    },
+    {
+      "name": "Bittensor",
+      "cell_values": {
+        "payment_timing": "emissions",
+        "custody": "protocol_emissions",
+        "review_model": "oracle_or_metric",
+        "identity": "onchain_wallet",
+        "reputation": "stake_weighted",
+        "capital_requirement": "hybrid",
+        "fee_model": "emissions_dilution",
+        "work_type": "mining"
+      },
+      "sources": [
+        "https://www.bittensor.com/docs/concepts/emissions",
+        "https://www.bittensor.com/docs/guides/mining",
+        "https://www.bittensor.com/docs/internals/consensus"
+      ]
+    },
+    {
+      "name": "x402",
+      "cell_values": {
+        "payment_timing": "per_call",
+        "custody": "payer_authorization",
+        "review_model": "none",
+        "identity": "onchain_wallet",
+        "reputation": "none",
+        "capital_requirement": "none",
+        "fee_model": "none",
+        "work_type": "per_call_api"
+      },
+      "sources": [
+        "https://github.com/x402-foundation/x402/blob/main/specs/schemes/exact/scheme_exact_evm.md",
+        "https://docs.cdp.coinbase.com/x402/seller/facilitator"
+      ]
+    },
+    {
+      "name": "Virtuals Protocol",
+      "cell_values": {
+        "payment_timing": "per_call",
+        "custody": "smart_contract",
+        "review_model": "none",
+        "identity": "tokenized_agent",
+        "reputation": "unknown",
+        "capital_requirement": "hybrid",
+        "fee_model": "take_rate",
+        "work_type": "hybrid"
+      },
+      "sources": [
+        "https://whitepaper.virtuals.io/about-virtuals-1/the-protocol/virtual-agents-as-programmable-decentralized-entities/agent-inference-payments",
+        "https://whitepaper.virtuals.io/builders-hub/acp-current-status",
+        "https://virtuals-protocol.com/"
+      ]
+    },
+    {
+      "name": "Fetch.ai Agentverse",
+      "cell_values": {
+        "payment_timing": "subscription",
+        "custody": "unknown",
+        "review_model": "unknown",
+        "identity": "keypair",
+        "reputation": "unknown",
+        "capital_requirement": "registration_fee",
+        "fee_model": "unknown",
+        "work_type": "offered_services"
+      },
+      "sources": [
+        "https://docs.agentverse.ai/documentation/getting-started/overview.mdx",
+        "https://network.fetch.ai/docs/introduction/almanac/register-in-almanac",
+        "https://uagents.fetch.ai/docs/guides/agent-payment-protocol"
+      ]
+    },
+    {
+      "name": "Bountycaster",
+      "cell_values": {
+        "payment_timing": "unenforced_p2p",
+        "custody": "none",
+        "review_model": "buyer",
+        "identity": "hybrid",
+        "reputation": "social_graph",
+        "capital_requirement": "none",
+        "fee_model": "none",
+        "work_type": "posted_tasks"
+      },
+      "sources": [
+        "https://www.bountycaster.xyz/faq",
+        "https://www.bountycaster.xyz/start/bounty"
+      ]
+    },
+    {
+      "name": "Immunefi",
+      "cell_values": {
+        "payment_timing": "at_acceptance",
+        "custody": "smart_contract",
+        "review_model": "hybrid",
+        "identity": "platform_account",
+        "reputation": "unknown",
+        "capital_requirement": "none",
+        "fee_model": "take_rate",
+        "work_type": "posted_tasks"
+      },
+      "sources": [
+        "https://immunefisupport.zendesk.com/hc/en-us/articles/18233853887761-Vaults-System-FAQ",
+        "https://github.com/immunefi-team/vaults",
+        "https://immunefi.com/bug-bounty/immunefi/information/"
+      ]
+    },
+    {
+      "name": "Code4rena",
+      "cell_values": {
+        "payment_timing": "at_acceptance",
+        "custody": "unknown",
+        "review_model": "judged",
+        "identity": "platform_account",
+        "reputation": "completion_history",
+        "capital_requirement": "none",
+        "fee_model": "take_rate",
+        "work_type": "competitions"
+      },
+      "sources": [
+        "https://docs.code4rena.com/competitions/judging-criteria",
+        "https://docs.code4rena.com/awarding",
+        "https://docs.code4rena.com/awarding/awarding-process"
+      ]
+    },
+    {
+      "name": "Sherlock",
+      "cell_values": {
+        "payment_timing": "at_acceptance",
+        "custody": "unknown",
+        "review_model": "judged",
+        "identity": "platform_account",
+        "reputation": "completion_history",
+        "capital_requirement": "none",
+        "fee_model": "take_rate",
+        "work_type": "competitions"
+      },
+      "sources": [
+        "https://docs.sherlock.xyz/audits/judging",
+        "https://docs.sherlock.xyz/audits/watsons/how-to-score-issue-points-in-a-contest",
+        "https://docs.sherlock.xyz/audits/watsons/meeting-the-payout-criteria",
+        "https://docs.sherlock.xyz/audits/judging/community-judging"
+      ]
+    },
+    {
+      "name": "Superteam Earn",
+      "cell_values": {
+        "payment_timing": "at_acceptance",
+        "custody": "none",
+        "review_model": "buyer",
+        "identity": "hybrid",
+        "reputation": "completion_history",
+        "capital_requirement": "none",
+        "fee_model": "none",
+        "work_type": "competitions"
+      },
+      "sources": [
+        "https://docs.superteam.fun/the-superteam-handbook/community/faqs/superteam-earn-faq",
+        "https://superteam.fun/earn/sponsor/",
+        "https://superteam.fun/earn/agents/"
+      ]
+    },
+    {
+      "name": "Morpheus",
+      "cell_values": {
+        "payment_timing": "per_call",
+        "custody": "smart_contract",
+        "review_model": "hybrid",
+        "identity": "onchain_wallet",
+        "reputation": "unknown",
+        "capital_requirement": "hybrid",
+        "fee_model": "protocol_fee",
+        "work_type": "per_call_api"
+      },
+      "sources": [
+        "https://nodedocs.mor.org/concepts/rewards-and-economics",
+        "https://nodedocs.mor.org/concepts/tokens-and-fees",
+        "https://gitbook.mor.org/faqs/compute-providers",
+        "https://mor.org/faqs"
+      ]
+    },
+    {
+      "name": "Nevermined",
+      "cell_values": {
+        "payment_timing": "subscription",
+        "custody": "smart_contract",
+        "review_model": "none",
+        "identity": "hybrid",
+        "reputation": "unknown",
+        "capital_requirement": "gas_only",
+        "fee_model": "protocol_fee",
+        "work_type": "hybrid"
+      },
+      "sources": [
+        "https://github.com/nevermined-io/contracts",
+        "https://github.com/nevermined-io/contracts/blob/main/docs/flows/Subscription-Payment-Plan.md",
+        "https://nevermined.ai/docs/development-guide/nevermined-x402"
+      ]
+    },
+    {
+      "name": "Skyfire",
+      "cell_values": {
+        "payment_timing": "per_call",
+        "custody": "platform_balance",
+        "review_model": "none",
+        "identity": "platform_account",
+        "reputation": "none",
+        "capital_requirement": "none",
+        "fee_model": "unknown",
+        "work_type": "per_call_api"
+      },
+      "sources": [
+        "https://docs.skyfire.xyz/docs/seller-onboarding",
+        "https://docs.skyfire.xyz/docs/wallet-funding",
+        "https://docs.skyfire.xyz/docs/kya-seller"
+      ]
+    },
+    {
+      "name": "Allora",
+      "cell_values": {
+        "payment_timing": "emissions",
+        "custody": "protocol_emissions",
+        "review_model": "oracle_or_metric",
+        "identity": "onchain_wallet",
+        "reputation": "stake_weighted",
+        "capital_requirement": "stake",
+        "fee_model": "emissions_dilution",
+        "work_type": "mining"
+      },
+      "sources": [
+        "https://docs.allora.network/home/layers/consensus/workers",
+        "https://docs.allora.network/build/reputer",
+        "https://docs.allora.network/home/layers/consensus/total-rewards"
+      ]
+    },
+    {
+      "name": "Nosana",
+      "cell_values": {
+        "payment_timing": "per_call",
+        "custody": "hybrid",
+        "review_model": "none",
+        "identity": "hybrid",
+        "reputation": "unknown",
+        "capital_requirement": "hardware",
+        "fee_model": "unknown",
+        "work_type": "offered_services"
+      },
+      "sources": [
+        "https://learn.nosana.com/programs/start.html",
+        "https://learn.nosana.com/inference/quick_start.html",
+        "https://learn.nosana.com/api/first-job.html",
+        "https://nosana.com/blog/introducing-swapping-and-priority-fees/"
+      ]
+    },
+    {
+      "name": "SingularityNET",
+      "cell_values": {
+        "payment_timing": "prefund_escrow",
+        "custody": "smart_contract",
+        "review_model": "none",
+        "identity": "onchain_wallet",
+        "reputation": "unknown",
+        "capital_requirement": "gas_only",
+        "fee_model": "unknown",
+        "work_type": "offered_services"
+      },
+      "sources": [
+        "https://dev.singularitynet.io/docs/products/DecentralizedAIPlatform/CoreConcepts/SmartContracts/mpe/",
+        "https://dev.singularitynet.io/docs/products/DecentralizedAIPlatform/Daemon/daemon-api/",
+        "https://singularitynet.io/singularitynet-completes-fet-asi-token-integration-into-decentralized-ai-platform/"
+      ]
+    },
+    {
+      "name": "Dework",
+      "cell_values": {
+        "payment_timing": "unenforced_p2p",
+        "custody": "none",
+        "review_model": "buyer",
+        "identity": "hybrid",
+        "reputation": "unknown",
+        "capital_requirement": "none",
+        "fee_model": "unknown",
+        "work_type": "posted_tasks"
+      },
+      "sources": [
+        "https://dework.gitbook.io/product-docs/guides-for-orgs/manage-payments/single-payment",
+        "https://dework.gitbook.io/product-docs/fundamentals/payments"
+      ]
+    },
+    {
+      "name": "Algora",
+      "cell_values": {
+        "payment_timing": "unknown",
+        "custody": "unknown",
+        "review_model": "buyer",
+        "identity": "platform_account",
+        "reputation": "unknown",
+        "capital_requirement": "none",
+        "fee_model": "unknown",
+        "work_type": "posted_tasks"
+      },
+      "sources": [
+        "https://api.docs.algora.io/bounties",
+        "https://github.com/algora-io/algora"
+      ]
+    }
+  ],
+  "matrix_csv": "platform,payment_timing,custody,review_model,identity,reputation,capital_requirement,fee_model,work_type\nBasedAgents,prefund_escrow,platform_balance,hybrid,keypair,hybrid,refundable_bond,none,posted_tasks\nArcBounty,prefund_escrow,smart_contract,hybrid,hybrid,hybrid,gas_only,take_rate,posted_tasks\nOlas Mech Marketplace,per_call,smart_contract,hybrid,onchain_wallet,completion_history,gas_only,take_rate,offered_services\nBittensor,emissions,protocol_emissions,oracle_or_metric,onchain_wallet,stake_weighted,hybrid,emissions_dilution,mining\nx402,per_call,payer_authorization,none,onchain_wallet,none,none,none,per_call_api\nVirtuals Protocol,per_call,smart_contract,none,tokenized_agent,unknown,hybrid,take_rate,hybrid\nFetch.ai Agentverse,subscription,unknown,unknown,keypair,unknown,registration_fee,unknown,offered_services\nBountycaster,unenforced_p2p,none,buyer,hybrid,social_graph,none,none,posted_tasks\nImmunefi,at_acceptance,smart_contract,hybrid,platform_account,unknown,none,take_rate,posted_tasks\nCode4rena,at_acceptance,unknown,judged,platform_account,completion_history,none,take_rate,competitions\nSherlock,at_acceptance,unknown,judged,platform_account,completion_history,none,take_rate,competitions\nSuperteam Earn,at_acceptance,none,buyer,hybrid,completion_history,none,none,competitions\nMorpheus,per_call,smart_contract,hybrid,onchain_wallet,unknown,hybrid,protocol_fee,per_call_api\nNevermined,subscription,smart_contract,none,hybrid,unknown,gas_only,protocol_fee,hybrid\nSkyfire,per_call,platform_balance,none,platform_account,none,none,unknown,per_call_api\nAllora,emissions,protocol_emissions,oracle_or_metric,onchain_wallet,stake_weighted,stake,emissions_dilution,mining\nNosana,per_call,hybrid,none,hybrid,unknown,hardware,unknown,offered_services\nSingularityNET,prefund_escrow,smart_contract,none,onchain_wallet,unknown,gas_only,unknown,offered_services\nDework,unenforced_p2p,none,buyer,hybrid,unknown,none,unknown,posted_tasks\nAlgora,unknown,unknown,buyer,platform_account,unknown,none,unknown,posted_tasks\n",
+  "clusters": [
+    {
+      "name": "Locked funds plus a buyer or a timer",
+      "platforms": [
+        "BasedAgents",
+        "ArcBounty"
+      ],
+      "argument": "Both lock the reward before work and let the buyer accept, with a timer if the buyer goes silent (7 days in the BasedAgents spec, 14 days via autoApprove on ArcBounty). The timer is only safe because the money is already committed. They differ on custody and identity: BasedAgents holds USDC in an operator-keyed house wallet and identifies the worker with an Ed25519 keypair; ArcBounty holds USDC in the BountyAdapter contract and identifies a wallet, optionally an ERC-8004 token. The co-occurrence is the lock plus the cheap acceptor, not the brand."
+    },
+    {
+      "name": "Discovery boards that do not hold the reward",
+      "platforms": [
+        "Bountycaster",
+        "Dework",
+        "Superteam Earn"
+      ],
+      "argument": "The poster pays after choosing a winner, from their own wallet, and the platform docs describe no escrow. Bountycaster says peer-to-peer and takes no cut. Dework's pay button sends a wallet or Safe transaction after the task is marked done. Superteam states zero commission and pays external-sponsor rewards to the winner wallet. These designs clump because listing and review are the product, and holding funds would make the operator a custodian. Enforcement is the weak point they share: a poster can refuse to pay, and the worker has no contract balance to claim."
+    },
+    {
+      "name": "Judged contests where the sponsor is the subject",
+      "platforms": [
+        "Code4rena",
+        "Sherlock",
+        "Immunefi"
+      ],
+      "argument": "The party who would be the buyer is the team whose code is under review, so buyer-only acceptance is a conflict. Code4rena and Sherlock assign judges and pay from a contest pot after scoring. Immunefi adds project confirmation, triage, mediation, and arbitration, and its vault is a Safe the project still owns. Judging, a platform account, and a take from the pot (judge share, or Immunefi's stated 10 percent) travel together. A keypair and a per-call meter do not solve duplicate findings or severity fights."
+    },
+    {
+      "name": "Pay for a request, not for a posted task",
+      "platforms": [
+        "x402",
+        "Olas Mech Marketplace",
+        "Virtuals Protocol",
+        "Nevermined",
+        "SingularityNET",
+        "Skyfire",
+        "Nosana"
+      ],
+      "argument": "The unit of work is a call, a session, or a GPU job. x402 settles an exact EIP-3009 authorization through a facilitator that pays gas. Olas charges per request into a balance tracker, with an optional Nevermined subscription. Virtuals prices inference per call and splits ACP jobs (documented 10 percent protocol tax, 30 percent buyback, 60 percent to the agent). SingularityNET draws a prefunded multi-party-escrow channel. Skyfire charges a pay token against a platform USD balance. Nosana prices GPU time in NOS or credits. Review collapses to delivery or is absent, because there is no separate buyer essay to grade. Subscriptions appear where the call stream is predictable. They co-occur because a 7-day task escrow is the wrong shape for an API."
+    },
+    {
+      "name": "Scores and emissions instead of a buyer",
+      "platforms": [
+        "Bittensor",
+        "Allora",
+        "Morpheus"
+      ],
+      "argument": "Continuous inference cannot wait for a buyer click. Bittensor pays miners from alpha emissions using stake-weighted Yuma scores, and registration is a burn and sometimes collateral. Allora pays workers and reputers from network rewards, with reputers staking and scoring loss against ground truth. Morpheus, in the Lumerin node docs, pays price-per-second from a contract and requires a refundable MOR provider bond plus hardware. Stake, hardware, or both show up because a free key can sybil a metric. The project FAQ still describes compute contracts as unfinished, so this cluster uses the node docs and does not treat the FAQ as a second hidden column."
+    }
+  ],
+  "white_space": [
+    {
+      "name": "Contract escrow released by a check, not a buyer",
+      "combination": "identity=keypair, custody=smart_contract, payment_timing=prefund_escrow, review_model=oracle_or_metric, capital_requirement=none, work_type=posted_tasks",
+      "why_it_might_be_viable": "Narrow jobs already have a public check: a test suite, a schema, a hash, an oracle price. Locking USDC in a contract and releasing it on that check removes the house key BasedAgents uses and the buyer or arbitrator ArcBounty uses. The worker needs no stake if the check is hard to fake.",
+      "why_it_might_not_be_viable": "Most paid agent work in this set is research, audits, or open-ended services. A bad oracle is cheaper to bribe than the bounty is worth, and a fuzzy rubric becomes a judge under another name. That is why the locked-funds cluster still uses a buyer or a timer, and the metric cluster uses emissions rather than a single USDC escrow."
+    },
+    {
+      "name": "Caller-paid USDC with a slashable stake and no platform balance",
+      "combination": "payment_timing=per_call, custody=payer_authorization, reputation=stake_weighted, capital_requirement=stake, fee_model=none, work_type=per_call_api",
+      "why_it_might_be_viable": "x402 already moves USDC from caller to server without a house wallet. Bittensor already slashes selfish scoring through stake. A server could post stake, a public uptime or error oracle could cut it, and the caller could refuse servers under a threshold. The call still settles caller to server.",
+      "why_it_might_not_be_viable": "The x402 exact scheme has a facilitator and a signature, not a court. Adding slashing recreates a platform: someone writes the fault rule and can be captured. Stake also blocks the zero-capital sellers x402 is for. The two designs stay apart because each one's users came for the property the other would remove."
+    },
+    {
+      "name": "Social board with a worker bond and no reward escrow",
+      "combination": "payment_timing=unenforced_p2p, custody=none, capital_requirement=refundable_bond, review_model=buyer, work_type=posted_tasks",
+      "why_it_might_be_viable": "Bountycaster and Dework lose work to duplicate claims because starting is free. A small refundable bond, returned when the poster marks the job taken or expired, would cut squatters without the platform holding the reward. ArcBounty's bond already does this, but only on top of a full USDC escrow.",
+      "why_it_might_not_be_viable": "A bond that can be slashed needs a slashing rule and a custodian for the bond itself. That pulls the light board back into the custodial or judged cluster. If the bond is never slashed, it is only a fee. The stable endpoints are no bond, or bond plus escrow. The middle is not a stable product."
+    },
+    {
+      "name": "Agent-token payee under a task escrow and a timer",
+      "combination": "identity=tokenized_agent, custody=smart_contract, payment_timing=prefund_escrow, review_model=hybrid, work_type=posted_tasks",
+      "why_it_might_be_viable": "Virtuals already treats the agent as a firm with a token and a revenue split. BasedAgents already escrows a task and pays on buyer acceptance or a 7-day timer. Putting the release address on an agent contract, with a fixed split written before the task, would let buyers hire a persistent firm instead of a keypair.",
+      "why_it_might_not_be_viable": "The worker who did the job and the token holders who are owed the split are different parties. No row in this set states a priority between them. A timer that pays a token contract can pay holders who did not work, and a buyer-paid keypair wallet can ignore holders. Until that fight has a rule, builders keep the two designs apart."
+    }
+  ],
+  "memo": "This matrix classifies twenty live platforms where an agent can be paid, from public pages read on 2026-10-03. BasedAgents is scored from its SPEC and skill the same way as the others. Default bounties sit in a house wallet the operator keys. Acceptance is the buyer or a 7-day timer. Identity is an Ed25519 keypair. The skill requires a 1 USDC refundable claim bond on bounty tasks. That is custodial escrow plus a bond. The sign-at-accept option is real and non-custodial, and it is not the default, so the cells follow the default.\n\nThe eight columns answer different questions. Payment timing is when value is committed. Custody is who holds it in between. Review is who decides the work counted. Identity is the credential that may claim. Reputation is the record that survives one job. Capital is what the worker must post before earning. Fee is what the platform keeps. Work type is the shape of the listing. A new platform takes one existing value on each column. Hybrid means the docs describe two live modes. Unknown means the pages read did not say. Unknown is not a guess.\n\nFive clusters follow from those columns. Locked funds plus a buyer or a timer (BasedAgents, ArcBounty) exist because a timer cannot pay unless the reward is already committed. Discovery boards that never hold the reward (Bountycaster, Dework, Superteam Earn) exist because the product is the listing, and custody would make the operator a money transmitter. Judged contests (Code4rena, Sherlock, Immunefi) exist because the sponsor is the audited party and cannot be the only judge. Per-call rails (x402, Olas, Virtuals, Nevermined, SingularityNET, Skyfire, Nosana) exist because the unit of work is a request, so a week-long task escrow is the wrong shape. Score-and-emission markets (Bittensor, Allora, Morpheus) exist because continuous inference cannot wait for a buyer, so stake or hardware replaces a free key.\n\nFour combinations are missing, and each absence has a reason. A keypair, a contract escrow, and a machine check, with no stake, would fit testable jobs and fits almost none of the open-ended work these boards actually list. Caller-paid USDC plus a slashable stake, with no platform balance, would join x402 settlement to Bittensor-style slashing, but the payment spec has no court and stake removes the zero-capital seller. A social board with a worker bond and no reward escrow looks light, then becomes custody the moment the bond can be slashed. An agent-token payee under a task escrow and a timer joins Virtuals' firm to BasedAgents' lock, then leaves the worker and the token holders fighting over one release. Morpheus is the row most likely to be misread: Lumerin node docs describe per-second settlement and a refundable bond, while the project FAQ still says compute contracts were unfinished. The cells follow the node docs. Algora's API describes GitHub bounties and claims, not escrow or a current fee, so those cells stay unknown."
+}

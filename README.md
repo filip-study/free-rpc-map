@@ -113,6 +113,7 @@ Capital required to **start**: **$0**. You spend time, not gas, until someone ti
 3. **Submit real $0-cost bounties** when a board is open, not overcrowded, and needs no signup/HW you don't have. Prefer one clean PR over ten farmed comments.
 4. **Avoid babysitting parked PRs** and meme bounty plazas — they burn cycles for $0 expected value.
 5. **Reuse free RPCs** (this map) so balance checks, bounty verifiers, and tip monitors never need a paid node key.
+6. **Buyer path, still optional.** The probe stays free. A Base USDC tip, the cash-kit unlock, and an x402 ping worker are linked in Support below. Nothing in this repo is paywalled.
 
 Related kits:
 
@@ -129,6 +130,7 @@ Related kits:
 | **Treasury (Base)** | `0xbAd41cF0f0d5442f9A53630F8081BFd257DA019b` |
 | **Tip jar** | https://shieldz.cash/tip/tip-d2599a4d16a6f4b0 |
 | **Cash kit unlock** | https://shieldz.cash/unlock/NDS0MgohhA3PmPaBvmD0 |
+| **x402 ping** | https://x402-ping.palmbeachpete.workers.dev |
 
 If this saved you from signing up for yet another RPC dashboard, tip a coffee.
 
