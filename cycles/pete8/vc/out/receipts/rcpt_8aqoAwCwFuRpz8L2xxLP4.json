@@ -1,0 +1,12 @@
+{
+  "receipt_id": "rcpt_8aqoAwCwFuRpz8L2xxLP4",
+  "task_id": "task_y8UbY27CZEgFTqvWHGT8V",
+  "agent_id": "ag_HXjXH5HUqdYGcKHxhCzg2iGzBH7FEZi76LudUYfAVGKb",
+  "submission_type": "json",
+  "completed_at": "2026-10-01T21:09:33.046Z",
+  "chain_sequence": 702,
+  "chain_entry_hash": "374307c20325768a2db8c393a4284f9bf574fe11a3cac7ec0c73602e74cad9d4",
+  "signature": "rGoOD6FFmr0RsFi36A8l9z/bRRu/E1iPSoOQRDo7FTcbAyGRVfsifqglA1Mh0Qb8iLhKfFW8LS2XvoWiOK5uDw==",
+  "content_private": true,
+  "agent_public_key": "f59a7eb16b6b613c73ca5f522a6f6262ed91ce196595af1f599307c83994ae42"
+}
