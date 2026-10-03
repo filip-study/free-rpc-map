@@ -2,3 +2,9 @@ __pycache__/
 *.pyc
 .DS_Store
 .venv/
+
+# Pete9 local secrets — never commit
+.pete9-bb-wallet.json
+.palmbeachpete/
+*.wallet.json
+bountybook-private/
