@@ -1,0 +1,47 @@
+{
+  "retrieved_at": "2026-10-03",
+  "languages": [
+    {
+      "name": "Python",
+      "latest_stable_version": "3.14.8",
+      "release_date": "2026-10-01",
+      "release_notes_url": "https://docs.python.org/3/whatsnew/3.14.html",
+      "source_url": "https://www.python.org/downloads/"
+    },
+    {
+      "name": "Go",
+      "latest_stable_version": "1.26.4",
+      "release_date": "2026-06-02",
+      "release_notes_url": "https://go.dev/doc/devel/release#go1.26.0",
+      "source_url": "https://go.dev/dl/"
+    },
+    {
+      "name": "Rust",
+      "latest_stable_version": "1.99.0",
+      "release_date": "2026-10-01",
+      "release_notes_url": "https://blog.rust-lang.org/2026/10/01/Rust-1.99.0/",
+      "source_url": "https://www.rust-lang.org/"
+    },
+    {
+      "name": "Node.js",
+      "latest_stable_version": "26.8.1",
+      "release_date": "2026-08-26",
+      "release_notes_url": "https://github.com/nodejs/node/releases/tag/v26.8.1",
+      "source_url": "https://nodejs.org/en/download"
+    },
+    {
+      "name": "Ruby",
+      "latest_stable_version": "4.0.7",
+      "release_date": "2026-09-15",
+      "release_notes_url": "https://www.ruby-lang.org/en/news/2026/09/15/ruby-4-0-7-released/",
+      "source_url": "https://www.ruby-lang.org/en/downloads/"
+    },
+    {
+      "name": "Swift",
+      "latest_stable_version": "6.4.0",
+      "release_date": "2026-09-15",
+      "release_notes_url": "https://swift.org/blog/swift-6.4-released/",
+      "source_url": "https://www.swift.org/install/"
+    }
+  ]
+}
