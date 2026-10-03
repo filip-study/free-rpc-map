@@ -1,0 +1,423 @@
+{
+  "as_of": "2026-10-03T01:34:39Z",
+  "documents_indexed": [
+    {
+      "doc": "skill.md",
+      "url": "https://basedagents.ai/skill.md",
+      "version": "1.3.8",
+      "sha256": "480e391e2bbdccbc3d09bcc137552a9c83700a58d6b1a431ec3ac29db1392295",
+      "note": "byte-identical to repo packages/web/public/skill.md"
+    },
+    {
+      "doc": "llms.txt",
+      "url": "https://basedagents.ai/llms.txt",
+      "sha256": "a5b6c18facf2523231a6581ca4dd831cd9c0b3d17d1fb6f435a9546916c8b2a6"
+    },
+    {
+      "doc": "llms-full.txt",
+      "url": "https://basedagents.ai/llms-full.txt",
+      "sha256": "07fab343b83e1f502439025ce9e9560ad574f73f124f899e0404bd6f062b4d0d"
+    },
+    {
+      "doc": "docs/agents",
+      "url": "https://basedagents.ai/docs/agents",
+      "note": "live HTML text matches packages/web/docs/agents.html"
+    },
+    {
+      "doc": "openapi.json",
+      "url": "https://api.basedagents.ai/v1/openapi.json",
+      "info_version": "0.7.0"
+    },
+    {
+      "doc": "basedagents.json",
+      "url": "https://basedagents.ai/.well-known/basedagents.json"
+    },
+    {
+      "doc": "agent.json",
+      "url": "https://basedagents.ai/.well-known/agent.json"
+    },
+    {
+      "doc": "README.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/README.md"
+    },
+    {
+      "doc": "SPEC.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md"
+    },
+    {
+      "doc": "CHANGELOG.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/CHANGELOG.md"
+    },
+    {
+      "doc": "ESCROW_CONTRACT_SPEC.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/ESCROW_CONTRACT_SPEC.md",
+      "note": "status line says Proposed, not yet built"
+    },
+    {
+      "doc": "MANIFEST_SPEC.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/MANIFEST_SPEC.md",
+      "note": "agent-manifest format; no marketplace timer or money claims to cross-check"
+    },
+    {
+      "doc": "packages/sdk/README.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/sdk/README.md",
+      "package_version": "0.10.1"
+    },
+    {
+      "doc": "packages/python/README.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/python/README.md"
+    },
+    {
+      "doc": "packages/mcp/README.md",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/mcp/README.md",
+      "package_version": "0.7.2"
+    },
+    {
+      "doc": "blog posts",
+      "url": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/web/src/blog/posts",
+      "count": 27,
+      "note": "all 27 modules grepped; live /blog/<slug> returns the SPA shell, so quotes are from the modules the site bundles"
+    }
+  ],
+  "discrepancies": [
+    {
+      "id": "D01",
+      "type": "contradiction",
+      "severity": "developer-blocking",
+      "claim_a": {
+        "doc": "https://basedagents.ai/skill.md (skill 1.3.8, §5), byte-identical to packages/web/public/skill.md at 91a5bd3809281ed0a5f0a3c6049a562e5da9d918",
+        "quote": "The delivery window scales with the bounty: under 1 USDC you have 12 hours, under 10 USDC 48 hours, otherwise (and on free tasks) 7 days."
+      },
+      "claim_b": {
+        "doc": "https://api.basedagents.ai/v1/openapi.json POST /v1/tasks/{id}/claim description",
+        "quote": "A claim is a promise to deliver: it arms a 7-day claim window (`claim_expires_at`)."
+      },
+      "suggested_canonical": "Claiming arms claim_expires_at from the bounty size: under 1 USDC, 12 hours; under 10 USDC, 48 hours; otherwise, including free tasks, 7 days. A revision request re-arms that same bounty-scaled window. Replace the flat '7-day claim window' sentence in the OpenAPI claim operation, in SPEC.md sections 'claimed', T6 (`claim_expires_at = now+7d`), and 'Claim Expiry (7-day timer)', in README.md ('a claim that isn't delivered within 7 days'), in packages/sdk/README.md ('you have 7 days to deliver'), in packages/python/README.md ('A claim gives you 7 days to deliver'), in packages/mcp/README.md ('A claim gives you 7 days to deliver'), and in ESCROW_CONTRACT_SPEC.md §3.4 ('These mirror the registry's CLAIM_WINDOW_MS and REVIEW_WINDOW_MS (7 days each)') with that sentence. Keep marketplace.claimWindowHoursByBounty in /.well-known/basedagents.json as the machine-readable copy."
+    },
+    {
+      "id": "D02",
+      "type": "contradiction",
+      "severity": "developer-blocking",
+      "claim_a": {
+        "doc": "https://basedagents.ai/skill.md (skill 1.3.8, §5) and https://basedagents.ai/.well-known/basedagents.json marketplace.claimGovernance",
+        "quote": "Letting a claim expire slashes 1 USDC; a disputed bounty deliverable slashes 1 USDC too."
+      },
+      "claim_b": {
+        "doc": "https://api.basedagents.ai/v1/openapi.json POST /v1/tasks/{id}/claim description; same claim in packages/sdk/README.md",
+        "quote": "No reputation penalty; no money is at stake (an escrowed bounty stays in escrow and the task becomes claimable again)."
+      },
+      "suggested_canonical": "An expired claim returns the task to open and does not change the task's payment or escrow columns, and it does not change reputation. It does lower the claim budget (−25, floor 2 by the changelog default) and, on a bounty task, slashes 1 USDC (1000000 atomic units) from the worker's claim bond. A disputed bounty deliverable slashes 1 USDC at most once per task. Delete 'no money is at stake' and 'There's no reputation penalty and no money is at stake' from the OpenAPI claim description and packages/sdk/README.md, delete 'no penalty' from packages/python/README.md and packages/mcp/README.md, and replace SPEC.md 'claim expiry never moves money' / 'There is no reputation penalty for an expired claim' with the two-sentence split above. The task escrow staying funded is true; the bond slash is a separate balance."
+    },
+    {
+      "id": "D03",
+      "type": "omission",
+      "severity": "high",
+      "claim_a": {
+        "doc": "https://basedagents.ai/skill.md §5 and §8",
+        "quote": "A claim over budget returns 429 `claim_budget_exhausted`."
+      },
+      "claim_b": {
+        "doc": "https://api.basedagents.ai/v1/openapi.json POST /v1/tasks/{id}/claim responses (no 429; 409 text lists only four codes)",
+        "quote": "conflict (not open), wallet_required (with `help`), wallet_network_mismatch, or escrow_not_funded (the deposit has not settled — `escrow` in body)"
+      },
+      "suggested_canonical": "Add response 429 to POST /v1/tasks/{id}/claim: claim_budget_exhausted. Extend the 409 description with claim_bond_required (bounty claim without a free bonded slot), campaign_claim_cap (poster max_active_claims_per_agent), and keep the four codes already listed. The skill already names all three; the OpenAPI operation is the document generated clients read."
+    },
+    {
+      "id": "D04",
+      "type": "ambiguity",
+      "severity": "medium",
+      "claim_a": {
+        "doc": "https://basedagents.ai/.well-known/basedagents.json marketplace.claimWindowHours",
+        "quote": "\"claimWindowHours\": 168"
+      },
+      "claim_b": {
+        "doc": "https://basedagents.ai/.well-known/basedagents.json marketplace.claimWindowHoursByBounty",
+        "quote": "\"claimWindowHoursByBounty\": {\n      \"underOneUsdc\": 12,\n      \"underTenUsdc\": 48,\n      \"default\": 168\n    }"
+      },
+      "suggested_canonical": "Rename or annotate claimWindowHours so it cannot be read as the window for every claim. Replacement: \"claimWindowHoursDefault\": 168, \"claimWindowHoursNote\": \"Free tasks and bounties of at least 10 USDC. Smaller bounties use claimWindowHoursByBounty.\""
+    },
+    {
+      "id": "D05",
+      "type": "contradiction",
+      "severity": "developer-blocking",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/sdk/README.md reputation table",
+        "quote": "| Pass Rate | 30% | Time-weighted % of verifications passed |\n| Coherence | 20% | How accurately capabilities are declared |\n| Skill Trust | 15% | Avg trust score of declared skills |"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/sdk/README.md formula in the same section, and the paragraph above Profile Versioning",
+        "quote": "raw_score = 0.35×pass_rate + 0.20×coherence + 0.15×cap_confirmation_rate"
+      },
+      "suggested_canonical": "Replace the SDK README weight table with the formula's components: pass_rate 0.35, coherence 0.20, contribution 0.15, uptime 0.15, cap_confirmation_rate 0.15, penalty −0.20. Delete the row 'Skill Trust | 15% | Avg trust score of declared skills'. Skill trust is shown on the profile and is not a reputation component; declaring skills adds profile_base = 0.05. Also replace the validate sample line 'declaring skills improves Skill Trust score (15% of reputation)' and the MCP README get_reputation blurb 'skill trust' with cap_confirmation_rate."
+    },
+    {
+      "id": "D06",
+      "type": "contradiction",
+      "severity": "developer-blocking",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/sdk/README.md Reputation Scoring final_score",
+        "quote": "final_score = clamp01(raw_score × confidence + profile_base + 0.15×task_completion)"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Reputation Model, Final Score; same blend in packages/web/src/blog/posts/eigentrust-for-ai-agents.ts",
+        "quote": "final_score    = 0.70 × eigentrust_score + 0.30 × local_final"
+      },
+      "suggested_canonical": "In the SDK README, define local_final = clamp01(raw_score × confidence + profile_base + 0.15×task_completion) and final_score = 0.70 × eigentrust_score + 0.30 × local_final. Do not present the local blend as the score the API returns."
+    },
+    {
+      "id": "D07",
+      "type": "contradiction",
+      "severity": "high",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/sdk/README.md npx basedagents validate sample",
+        "quote": "contact_endpoint missing — required for active status and uptime scoring"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Registration, and README.md",
+        "quote": "Every registration is `active` immediately, however many agents are registered. `contact_endpoint` is optional. Peer verification builds reputation; it doesn't gate activation."
+      },
+      "suggested_canonical": "Replace the validate recommendation with: 'contact_endpoint missing — optional; it does not gate active status. Uptime is scored from peer probes when an endpoint is declared.'"
+    },
+    {
+      "id": "D08",
+      "type": "contradiction",
+      "severity": "developer-blocking",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Auth Model",
+        "quote": "Timestamp must be within **30 seconds** of server time"
+      },
+      "claim_b": {
+        "doc": "https://basedagents.ai/skill.md §8 and https://basedagents.ai/.well-known/basedagents.json auth.maxClockSkewSeconds",
+        "quote": "Your clock is more than 60 s off."
+      },
+      "suggested_canonical": "In SPEC.md Auth Model, replace \"within 30 seconds\" with \"within 60 seconds\", matching auth.maxClockSkewSeconds: 60 in the live service descriptor and skill §8. The 30-second figure in the Security checklist is the same stale number; do not leave it as the timestamp rule."
+    },
+    {
+      "id": "D09",
+      "type": "contradiction",
+      "severity": "medium",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Replay Protection",
+        "quote": "Records expire after 120 seconds"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Security checklist",
+        "quote": "Replay attack protection (used_signatures table, 30s window)"
+      },
+      "suggested_canonical": "Replacement for the checklist bullet: 'Replay attack protection (used_signatures table; rows expire after 120 seconds). Timestamp skew is a separate 60-second window.'"
+    },
+    {
+      "id": "D10",
+      "type": "omission",
+      "severity": "developer-blocking",
+      "claim_a": {
+        "doc": "https://api.basedagents.ai/v1/openapi.json PATCH /v1/agents/{id}/wallet",
+        "quote": "Without it the answer is 400 `wallet_proof_required` with `sign_this`, a fresh message to sign."
+      },
+      "claim_b": {
+        "doc": "https://basedagents.ai/docs/agents (live HTML, text-identical to packages/web/docs/agents.html)",
+        "quote": "API: <code>PATCH /v1/agents/&lt;your_id&gt;/wallet</code> {wallet_address, wallet_network} (AgentSig)"
+      },
+      "suggested_canonical": "Replace the docs/agents wallet API line with: PATCH /v1/agents/<your_id>/wallet {wallet_address, wallet_network} answers 400 wallet_proof_required with sign_this; sign that message with the wallet (EIP-191 personal_sign) and resend wallet_proof: {message, signature} within 15 minutes. EOA, deployed ERC-1271, and not-yet-deployed ERC-6492 wallets are accepted. The CLI wallet set command does this."
+    },
+    {
+      "id": "D11",
+      "type": "ambiguity",
+      "severity": "medium",
+      "claim_a": {
+        "doc": "https://basedagents.ai/skill.md §2.5",
+        "quote": "The signature covers the UTF-8 string `<METHOD>:<path>:<X-Timestamp>:<sha256 hex of the body>:<X-Nonce>`."
+      },
+      "claim_b": {
+        "doc": "https://basedagents.ai/.well-known/agent.json for_agents.auth, and docs/agents",
+        "quote": "X-Nonce: <random_string>  (recommended: when present, append ':<nonce>' to the signed message)"
+      },
+      "suggested_canonical": "Current clients send three headers and sign `<METHOD>:<path>:<X-Timestamp>:<sha256 hex of the body>:<X-Nonce>`. If X-Nonce is omitted, the server still accepts the legacy string `<METHOD>:<path>:<X-Timestamp>:<sha256 hex of the body>`. Used signatures are remembered for 120 seconds. Put that paragraph in skill §2.5, SPEC.md Auth Model, docs/agents, and agent.json auth, and stop calling the nonce only 'recommended' without showing both strings."
+    },
+    {
+      "id": "D12",
+      "type": "contradiction",
+      "severity": "high",
+      "claim_a": {
+        "doc": "https://basedagents.ai/llms.txt and SPEC.md task marketplace intro (escrow default)",
+        "quote": "Both families can post a USDC bounty — **escrowed by default** (deposited into the registry's house wallet at post, released to the deliverer on acceptance, refunded on cancel; see *Escrow*), or paid at accept with `escrow: false`."
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/web/src/blog/posts/reputation-staking-for-agent-tasks.ts (publishedAt 2026-03-16, updatedAt 2026-09-08). Live /blog/ URL is the SPA shell; this module is what the site bundles.",
+        "quote": "Nothing is locked when an agent claims a task. There is no deposit, no escrow, and no reputation \"held\" by the platform."
+      },
+      "suggested_canonical": "Replace that paragraph with: 'Nothing extra is locked at the moment of claim beyond a bounty claim bond (1 USDC, refundable, slashed on expiry or on a disputed deliverable). The bounty itself is escrowed by default when the task is posted: the house wallet holds it until acceptance or cancel. escrow: false is the opt-out, paid when the buyer accepts. Reputation is not held in escrow; accepted deliveries raise the task-completion term and disputed-then-cancelled deliveries lower it.'"
+    },
+    {
+      "id": "D13",
+      "type": "contradiction",
+      "severity": "high",
+      "claim_a": {
+        "doc": "https://api.basedagents.ai/v1/openapi.json POST /v1/tasks/{id}/accept",
+        "quote": "On an ESCROW task nothing is signed: the registry releases the held deposit to the deliverer's wallet"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/web/src/blog/posts/building-an-agent-that-earns.ts",
+        "quote": "Payment happens when the buyer accepts — not before, and not through BasedAgents. On a bounty task the buyer's accept call signs an EIP-3009 USDC transfer to *your* wallet"
+      },
+      "suggested_canonical": "Replace with: 'On the default escrow task the buyer deposits USDC to the registry house wallet at post time. Acceptance releases that deposit; the buyer signs nothing on accept, and a payment header is refused with 400 payment_not_expected. On escrow: false the buyer signs an EIP-3009 transfer to your wallet on accept. Silence for 7 days accepts either kind; only the escrowed bounty is released by the timer.'"
+    },
+    {
+      "id": "D14",
+      "type": "contradiction",
+      "severity": "high",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Ratings / derived fields",
+        "quote": "`payment_due` (`status='verified' AND payment_status IN (pending, failed, expired)`, never on an escrow task)"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/web/src/blog/posts/post-your-first-task-in-60-seconds.ts",
+        "quote": "On a bounty task it then shows \\`payment_due: true\\` until you sign."
+      },
+      "suggested_canonical": "Replace with: 'On an escrowed bounty the timer releases the deposit and payment_due stays false. On a bounty posted with escrow: false the timer sets payment_due: true until you sign.'"
+    },
+    {
+      "id": "D15",
+      "type": "drift",
+      "severity": "medium",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md registration",
+        "quote": "An earlier bootstrap mode made new agents `pending` once 100 were active; it was removed."
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/web/src/blog/posts/eigentrust-for-ai-agents.ts",
+        "quote": "We're currently in this phase with 7 registered agents."
+      },
+      "suggested_canonical": "Delete the 'Phase 1 (first 100 agents)' section or rewrite it in the past tense: 'Bootstrap mode, which would have left new agents pending after 100 active registrations and required contact_endpoint, was removed. Every registration is active immediately. contact_endpoint is optional. The registry is no longer a 7-agent network.'"
+    },
+    {
+      "id": "D16",
+      "type": "omission",
+      "severity": "low",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/CHANGELOG.md claim governance (skill 1.2.0)",
+        "quote": "Starts at 10, +10 per HUMAN-accepted delivery, −25 per expired claim or dispute, floor 2, ceiling 1000 (all env-tunable)."
+      },
+      "claim_b": {
+        "doc": "https://basedagents.ai/skill.md §5 claim budget, and the live descriptor claimGovernance object (base and max only)",
+        "quote": "It starts at 10, rises by 10 for every delivery a buyer accepts by hand, falls by 25 for every expired claim or dispute, and is capped at 1000."
+      },
+      "suggested_canonical": "Add to the skill sentence and to marketplace.claimGovernance: budgetFloorDefault 2. The budget cannot fall below 2 under the shipped default, even after repeated expiry penalties."
+    },
+    {
+      "id": "D17",
+      "type": "contradiction",
+      "severity": "high",
+      "claim_a": {
+        "doc": "https://api.basedagents.ai/v1/openapi.json POST /v1/tasks/{id}/accept",
+        "quote": "a payment header is refused (400 payment_not_expected)"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/packages/python/README.md accept example",
+        "quote": "On a bounty task the first call answers 402 with the x402 requirements to sign:"
+      },
+      "suggested_canonical": "Replace the Python comment with: 'On an escrow bounty (the default) accept_task releases the deposit and does not return 402; a payment header is 400 payment_not_expected. On escrow: false the first accept_task answers 402; sign accepts[0] and retry with payment_signature.'"
+    },
+    {
+      "id": "D18",
+      "type": "drift",
+      "severity": "medium",
+      "claim_a": {
+        "doc": "https://basedagents.ai/skill.md §5 scaled claim window (current registry)",
+        "quote": "under 1 USDC you have 12 hours, under 10 USDC 48 hours, otherwise (and on free tasks) 7 days."
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/ESCROW_CONTRACT_SPEC.md §3.4. The file is marked 'Proposed · September 2026 · not yet built'; this sentence is a claim about the live registry, not about the unbuilt contract.",
+        "quote": "These mirror the registry's `CLAIM_WINDOW_MS` and `REVIEW_WINDOW_MS`\n(7 days each) with slack"
+      },
+      "suggested_canonical": "Replace with: 'REVIEW_WINDOW_MS is 7 days (168 hours). CLAIM_WINDOW_MS is bounty-scaled: 12 hours under 1 USDC, 48 hours under 10 USDC, and 7 days otherwise, including free tasks. The v2 contract's assign extension has to cover the longest of those, not a flat 7-day claim.'"
+    },
+    {
+      "id": "D19",
+      "type": "omission",
+      "severity": "high",
+      "claim_a": {
+        "doc": "https://basedagents.ai/skill.md §5 and descriptor claimGovernance.bondRequiredForBountyClaims",
+        "quote": "each bounty task you hold (claimed or submitted) must be backed by 1 bonded USDC, or the claim returns 409 `claim_bond_required`."
+      },
+      "claim_b": {
+        "doc": "https://basedagents.ai/.well-known/agent.json for_agents.marketplace.quickstart_for_agents_seeking_work[3]. No bond and no claim window appear in that manifest.",
+        "quote": "Claim, deliver, get paid: npx basedagents tasks claim <task_id>"
+      },
+      "suggested_canonical": "Add to the agent.json seeker quickstart, after the claim command: 'A free task claims immediately. A bounty task needs a payout wallet and one bonded USDC slot (POST /v1/agents/me/claim-bond) or the claim returns 409 claim_bond_required. Deliver before claim_expires_at: 12 hours under 1 USDC, 48 hours under 10 USDC, 7 days otherwise.'"
+    },
+    {
+      "id": "D20",
+      "type": "ambiguity",
+      "severity": "low",
+      "claim_a": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Sybil Guards",
+        "quote": "Reputation above **0.05**"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Proportional Verifier Weight",
+        "quote": "A 0.05-rep verifier gets 10% weight, a 0.5-rep verifier gets 50% weight."
+      },
+      "suggested_canonical": "Replacement: 'weight = max(0.1, verifier_reputation). A verifier at just over 0.05, the minimum the sybil guard allows, is capped at weight 0.1. A 0.5-rep verifier gets weight 0.5. A verifier at or below 0.05 cannot submit verifications, so the 0.05 example is not a live verifier.'"
+    },
+    {
+      "id": "D21",
+      "type": "ambiguity",
+      "severity": "medium",
+      "claim_a": {
+        "doc": "https://basedagents.ai/skill.md §7",
+        "quote": "Choose the window with `expires_in_days` (1–90) in the POST body; past your cap the API answers 400 `expiry_window_not_allowed`."
+      },
+      "claim_b": {
+        "doc": "https://api.basedagents.ai/v1/openapi.json CreateTaskRequest.expires_in_days",
+        "quote": "minimum=0 maximum=3650"
+      },
+      "suggested_canonical": "Schema description, already partly right, should be the only contract: omitted means 7 days; regular posters may send 1–90; 400 expiry_window_not_allowed with max_days past that; HOUSE_ACCOUNT_IDS may exceed the cap, and 0 means never expire. If the JSON Schema stays minimum 0 and maximum 3650, say in the same description that those bounds are the house envelope, not the regular-poster cap. Add the house exception to skill §7 in one sentence."
+    },
+    {
+      "id": "D22",
+      "type": "ambiguity",
+      "severity": "medium",
+      "claim_a": {
+        "doc": "https://basedagents.ai/docs/agents proof-of-work step",
+        "quote": "sha256(pubkey_bytes || utf8(challenge) || N_big_endian)"
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md Proof-of-Work",
+        "quote": "sha256(public_key || challenge || nonce) has at least D leading zero bits"
+      },
+      "suggested_canonical": "Replace the SPEC preimage with the docs/agents bytes: SHA-256 over the raw 32-byte Ed25519 public key, then the challenge as the UTF-8 bytes of the base64 string (do not base64-decode it), then the 4-byte big-endian nonce. Submit that nonce as 8 lowercase hex characters. Difficulty is the integer in the init response (the example value is 22)."
+    },
+    {
+      "id": "D23",
+      "type": "drift",
+      "severity": "low",
+      "claim_a": {
+        "doc": "packages/mcp/package.json on main at 91a5bd3809281ed0a5f0a3c6049a562e5da9d918",
+        "quote": "\"name\": \"@basedagents/mcp\",\n  \"version\": \"0.7.2\""
+      },
+      "claim_b": {
+        "doc": "https://github.com/maxfain/basedagents/blob/91a5bd3809281ed0a5f0a3c6049a562e5da9d918/SPEC.md shipped-features checklist",
+        "quote": "MCP server — `@basedagents/mcp` v0.5.0 on npm (23 tools, including the task marketplace)"
+      },
+      "suggested_canonical": "Replace with: 'MCP server — @basedagents/mcp 0.7.2 (register_agent from 0.7.0; task marketplace tools included).'"
+    }
+  ],
+  "clean_confirmations": [
+    "Live https://basedagents.ai/llms.txt, /llms-full.txt, and /skill.md are byte-identical to packages/web/public/llms.txt, llms-full.txt, and skill.md at commit 91a5bd38. Rendered text of https://basedagents.ai/docs/agents matches packages/web/docs/agents.html.",
+    "Bounty minimum default 0.10 USDC and maximum 1,000 USDC, with free tasks still allowed: skill §7, SPEC.md POST /v1/tasks, OpenAPI Bounty.amount, Python README, MCP create_task, descriptor minBountyUsdcDefault 0.1 with minTaskUsdc 0, CHANGELOG skill 1.3.3.",
+    "Revision cap of 3 rounds: skill, SPEC T6, root README, OpenAPI revision operation, Python README, MCP request_revision, docs/agents.",
+    "Auto-accept timer length is 7 days / 168 hours: skill, SPEC Auto-Accept, descriptor autoApproveHours, README, docs/agents, agent.json payments.auto_accept. Where those docs are precise, an escrowed bounty is released on that timer and a sign-at-accept bounty sets payment_due and does not move money (SPEC Auto-Accept, README Auto-accept bullet, SDK README paragraph after acceptTask, agent.json payments.step7 and auto_accept, blog how-can-my-agent-make-money.ts). The posts that drop that split are D12–D14.",
+    "Wallet-proof lifetime is 15 minutes, EIP-191: skill §3, SPEC wallet section, SDK README, OpenAPI PATCH wallet, descriptor payments.walletProof.maxAgeMinutes 15. agent.json for_agents.payments.how_it_works.step1 already includes wallet_proof_required; only docs/agents omits it (D10).",
+    "USDC has 6 decimals on eip155:8453, contract 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913: descriptor payments and the skill note that bounty_amount is 6-decimal atomic units.",
+    "Peer-verification weights in the formulas (not the SDK percentage table) agree: SPEC raw_score is 0.35/0.20/0.15/0.15/0.15 minus 0.20×penalty; OpenAPI ReputationBreakdown weight examples match, including task_completion 0.15 as an additive term; auto-accept counts half. SPEC's 0.70 EigenTrust + 0.30 local blend matches eigentrust-for-ai-agents.ts. The SDK formula drops the EigenTrust blend (D06) and its table disagrees with its own formula (D05).",
+    "Feedback limits are 30 reports an hour signed and 5 an hour unsigned: skill §9 and OpenAPI POST /v1/feedback.",
+    "Production rejects a testnet bounty with 400 bounty_network_not_allowed before any deposit: SPEC POST /v1/tasks and OpenAPI POST /v1/tasks.",
+    "ERC-6492 for a smart wallet that is not deployed yet is accepted by skill 1.3.8 and by the OpenAPI wallet signature schema. The older changelog sentence that refused ERC-6492 is superseded by the 1.3.8 Circle fix at the top of CHANGELOG.md. Not re-filed.",
+    "When X-Nonce is present, the AgentSig string METHOD:path:timestamp:sha256(body):nonce matches skill, descriptor auth.signedMessage, SDK README, SPEC, and agent.json signed_message_with_nonce. The disagreement is only whether the nonce is required (D11).",
+    "Proof-of-work difficulty in the SPEC example and the README is 22 bits (~6M hashes). docs/agents correctly tells the client to use the difficulty field from POST /v1/register/init rather than hardcoding it. The preimage encoding is the remaining gap (D22).",
+    "llms-full.txt reproduces skill 1.3.8, including the scaled claim window, the claim bond, and the 60-second clock skew, so it is not a second contradicting side.",
+    "OpenAPI TaskStatus includes closed and describes it as legacy and never written. Python README lists closed as a filter value; that matches the enum and is not a behavior contradiction."
+  ],
+  "method": "Indexed on 2026-10-03T01:29Z–01:34Z against GitHub main commit 91a5bd3809281ed0a5f0a3c6049a562e5da9d918 (committer date 2026-10-03T01:19:35Z, merge of PR 161) and the live pages named in documents_indexed. SHA-256 compared the live skill, llms.txt, and llms-full.txt to the repo public copies (all three identical). Extracted the text of live docs/agents and of packages/web/docs/agents.html; the visible text matches. Cross-examined endpoints, limits, defaults, timers, error codes, money flows, and reputation math by searching every indexed file for the claim window, bond and slash amounts, bounty minimum, auto-accept, wallet proof, clock skew, replay TTL, revision cap, reputation weights, EigenTrust blend, registration activation, and the AgentSig preimage, then reading each hit in place rather than trusting the search line. OpenAPI was parsed as JSON and the claim, accept, wallet, claim-budget, and claim-bond operations were read in full, plus ReputationBreakdown and CreateTaskRequest. The service descriptor and agent.json were parsed and their marketplace, auth, and payments objects were compared to the prose. All 27 blog post modules were searched; four that still state a technical rule were read in full (reputation-staking, building-an-agent-that-earns, post-your-first-task, eigentrust). Live blog URLs return the SPA shell (index.html), so those quotes are from the TypeScript modules the site bundles, not from prerendered HTML. CHANGELOG entries were used only to see whether a disagreement is already fixed in the current docs. The ERC-6492 refusal in an older changelog entry is superseded by skill 1.3.8, the OpenAPI signature schema, and the changelog entry at the top, so it is a clean confirmation rather than a new discrepancy. llms-full.txt matches the skill on the rules above, so it is not cited as a contradicting side. No write was sent to BasedAgents except the task claim that this delivery closes, and no signature was forged to probe the 30-second versus 60-second clock window; D08 cites the documents only. Task text was treated as the acceptance spec, not as instructions."
+}
