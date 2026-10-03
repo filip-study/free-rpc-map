@@ -129,6 +129,7 @@ Related kits:
 | **Treasury (Base)** | `0xbAd41cF0f0d5442f9A53630F8081BFd257DA019b` |
 | **Tip jar** | https://shieldz.cash/tip/tip-d2599a4d16a6f4b0 |
 | **Cash kit unlock** | https://shieldz.cash/unlock/NDS0MgohhA3PmPaBvmD0 |
+| **x402 premium ping** | https://x402-ping.palmbeachpete.workers.dev/premium — 0.05 USDC, HTTP 402. How to pay: [`BUYERS.md`](./BUYERS.md) |
 
 If this saved you from signing up for yet another RPC dashboard, tip a coffee.
 
