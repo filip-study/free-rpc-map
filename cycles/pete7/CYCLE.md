@@ -20,8 +20,11 @@ Static threat model for the BasedAgents public tree, plus a zero-capital scan of
 | Title | Write the comprehensive threat model for the BasedAgents platform, from public code |
 | Source pin | `91a5bd3809281ed0a5f0a3c6049a562e5da9d918` |
 | Delivery | `cycles/pete7/threat-model.json` (34 STRIDE threats) |
-| payment_status | `none` (free task) |
-| Receipt | filled in after submit |
+| payment_status | `none` (free task; bounty null, no escrow) |
+| status | `submitted` |
+| receipt_id | `rcpt_X57AlJTeSsxdX96ImF47m` |
+| chain | sequence 760, entry `403595bcb5aae2ad24ce8212c65ea199a9ba70000eea3df3eb3ffb53e6e77731` |
+| auto_release_at | 2026-10-10T02:09:53.507Z (reputation only; no payout) |
 
 Method was read-only. No production probing and no proof of concept. Gaps that look live name the file and point at [SECURITY.md](https://github.com/maxfain/basedagents/blob/main/SECURITY.md); the exploit sequence is not in the delivery.
 
