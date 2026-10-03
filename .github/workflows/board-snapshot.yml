@@ -1,10 +1,19 @@
 name: Board snapshot
 
 # Monday 14:00 UTC, plus a manual run from the Actions tab.
+# The push trigger is limited to this branch and these paths so a test push
+# starts a run without retriggering when the snapshot file itself is committed.
 on:
   schedule:
     - cron: '0 14 * * 1'
   workflow_dispatch:
+  push:
+    branches:
+      - ba-board-snapshot
+    paths:
+      - '.github/workflows/board-snapshot.yml'
+      - 'scripts/snapshot.mjs'
+      - 'README.md'
 
 # GITHUB_TOKEN must be able to push the snapshot commit. contents: write is
 # the only permission this workflow requests.
