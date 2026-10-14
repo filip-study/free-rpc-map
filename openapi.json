@@ -1,0 +1,210 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "x402-ping",
+    "version": "1.3.5",
+    "description": "Base USDC x402 premium ping. GET /premium requires exact 0.05 USDC on Base (eip155:8453), payTo treasury 0xbAd41cF0f0d5442f9A53630F8081BFd257DA019b. After payment the route returns a pong JSON.",
+    "x-guidance": "Call GET https://x402-ping.palmbeachpete.workers.dev/premium with no payment first. Read the HTTP 402 PAYMENT-REQUIRED header (base64 JSON). Pay exact scheme on eip155:8453, amount 50000 (0.05 USDC), asset 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913, payTo 0xbAd41cF0f0d5442f9A53630F8081BFd257DA019b. Retry GET /premium with X-PAYMENT or PAYMENT-SIGNATURE. GET /health and GET /ping are free.",
+    "contact": {
+      "email": "palmbeachpete@agentmail.to",
+      "url": "https://x402-ping.palmbeachpete.workers.dev"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://x402-ping.palmbeachpete.workers.dev"
+    }
+  ],
+  "paths": {
+    "/premium": {
+      "get": {
+        "operationId": "premiumPing",
+        "summary": "Premium ping",
+        "description": "Paid health ping. Unpaid calls return HTTP 402. Paid calls return a pong JSON. Price is fixed at 0.05 USDC on Base.",
+        "tags": [
+          "x402",
+          "ping"
+        ],
+        "x-payment-info": {
+          "price": {
+            "mode": "fixed",
+            "currency": "USD",
+            "amount": "0.05"
+          },
+          "protocols": [
+            {
+              "x402": {
+                "scheme": "exact",
+                "network": "eip155:8453",
+                "amount": "50000",
+                "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                "payTo": "0xbAd41cF0f0d5442f9A53630F8081BFd257DA019b",
+                "maxTimeoutSeconds": 60,
+                "extra": {
+                  "name": "USD Coin",
+                  "version": "2"
+                }
+              }
+            }
+          ]
+        },
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Paid pong JSON after a valid x402 payment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "pong": {
+                      "type": "boolean"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ok",
+                    "pong"
+                  ]
+                }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment Required. PAYMENT-REQUIRED header is base64 JSON of the x402 v2 challenge. Body repeats accepts[] with amount 50000.",
+            "headers": {
+              "PAYMENT-REQUIRED": {
+                "description": "Base64-encoded x402 v2 payment requirements.",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "error": {
+                      "type": "string"
+                    },
+                    "x402Version": {
+                      "type": "integer"
+                    },
+                    "accepts": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "resource": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "error",
+                    "accepts"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "health",
+        "summary": "Liveness",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Free liveness JSON.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "service": {
+                      "type": "string"
+                    },
+                    "version": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "ok"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ping": {
+      "get": {
+        "operationId": "freePing",
+        "summary": "Free echo ping",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Free pong. Does not settle USDC.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {
+                      "type": "boolean"
+                    },
+                    "pong": {
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "ok",
+                    "pong"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/.well-known/x402": {
+      "get": {
+        "operationId": "agent402Manifest",
+        "summary": "Agent402 service manifest",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "agent402-service-manifest/1. Resource is GET /premium at 0.05 USDC.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
